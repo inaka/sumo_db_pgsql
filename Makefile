@@ -3,7 +3,7 @@ PROJECT = sumo_db_pgsql
 DEPS = lager sumo_db epgsql
 
 dep_lager = git https://github.com/basho/lager.git 3.0.1
-dep_sumo_db = git https://github.com/inaka/sumo_db.git 0.3.13
+dep_sumo_db = git https://github.com/inaka/sumo_db.git de5998d566
 dep_epgsql = git https://github.com/epgsql/epgsql 2.0.0
 
 include erlang.mk
