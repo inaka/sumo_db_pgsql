@@ -10,8 +10,8 @@ dep_epgsql = git https://github.com/epgsql/epgsql 2.0.0
 
 TEST_DEPS = katana_test mixer
 
-dep_katana_test = git https://github.com/inaka/katana-test.git 5491fba
-dep_mixer = git git://github.com/inaka/mixer.git 0.1.5
+dep_katana_test = git https://github.com/inaka/katana-test.git 0.0.1
+dep_mixer = git https://github.com/inaka/mixer.git 0.1.5
 
 BUILD_DEPS = inaka_mk
 

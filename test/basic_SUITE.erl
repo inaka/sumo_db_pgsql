@@ -42,7 +42,7 @@ all() ->
 
 -spec init_per_suite(config()) -> config().
 init_per_suite(Config) ->
-  ok = test_utils:start_apps(),
+  {ok, _} = application:ensure_all_started(sumo_db_pgsql),
   [{module, sumo_test_people_pgsql} | Config].
 
 init_per_testcase(_, Config) ->

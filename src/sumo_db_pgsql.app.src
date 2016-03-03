@@ -1,0 +1,14 @@
+{application, sumo_db_pgsql, [
+  {description, "SumoDB PGSQL Adapter"},
+  {id, "sumo_db_pgsql"},
+  {registered, []},
+  {applications, [
+    kernel,
+    stdlib,
+    lager,
+    epgsql,
+    sumo_db
+  ]},
+  {modules, []},
+  {mod, {sumo_db_pgsql, []}}
+]}.
