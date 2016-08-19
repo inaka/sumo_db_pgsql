@@ -11,3 +11,9 @@ rel/example_project
 .erlang.mk/
 logs/
 sumo_db_pgsql.d
+_build
+*.iml
+.idea
+*_plt
+rebar.lock
+.DS_Store

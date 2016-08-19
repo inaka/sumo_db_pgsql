@@ -1,5 +1,6 @@
 {application, sumo_db_pgsql, [
   {description, "SumoDB PGSQL Adapter"},
+  {vsn, "0.1.0"},
   {id, "sumo_db_pgsql"},
   {registered, []},
   {applications, [
@@ -10,5 +11,6 @@
     sumo_db
   ]},
   {modules, []},
-  {mod, {sumo_db_pgsql, []}}
+  {mod, {sumo_db_pgsql, []}},
+  {build_tools, ["rebar3"]}
 ]}.
