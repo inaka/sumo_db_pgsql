@@ -21,7 +21,7 @@
 -author("Juan Facorro <juan@inaka.net>").
 -license("Apache License 2.0").
 
--include_lib("epgsql/include/pgsql.hrl").
+-include_lib("epgsql/include/epgsql.hrl").
 
 -behavior(sumo_store).
 
@@ -127,7 +127,7 @@ persist(Doc,  #{conn := Conn} = State) ->
               end,
 
   ProcessedValues = lists:map(ToNullFun, Values),
-  case pgsql:equery(Conn, stringify(Sql), ProcessedValues) of
+  case epgsql:equery(Conn, stringify(Sql), ProcessedValues) of
     {ok, _Count, _Columns, Rows} ->
       {LastId} = hd(Rows),
       NewDoc = sumo_internal:set_field(IdField, LastId, Doc),
@@ -153,7 +153,7 @@ delete_by(DocName, Conditions, #{conn := Conn} = State) ->
       lists:flatten(Clauses)
     ],
 
-  case pgsql:equery(Conn, stringify(Sql), Values) of
+  case epgsql:equery(Conn, stringify(Sql), Values) of
     {ok, Count} ->
       {ok, Count, State};
     {error, Error} ->
@@ -165,7 +165,7 @@ delete_by(DocName, Conditions, #{conn := Conn} = State) ->
 delete_all(DocName,  #{conn := Conn} = State) ->
   Sql = ["DELETE FROM ", escape(DocName)],
 
-  case pgsql:equery(Conn, stringify(Sql), []) of
+  case epgsql:equery(Conn, stringify(Sql), []) of
     {ok, Count} ->
       {ok, Count, State};
     {error, Error} ->
@@ -253,7 +253,7 @@ find_by(DocName, Conditions, SortFields, Limit, Offset, State) ->
       Limit -> Values ++ [Limit, Offset]
     end,
 
-  case pgsql:equery(Conn, stringify(Sql2), AllValues) of
+  case epgsql:equery(Conn, stringify(Sql2), AllValues) of
     {ok, Columns, Rows} ->
       ColFun = fun(Col) -> binary_to_atom(Col#column.name, utf8) end,
       ColumnNames = lists:map(ColFun, Columns),
@@ -298,7 +298,7 @@ create_schema(Schema, #{conn := Conn} = State) ->
   BinDql = iolist_to_binary(Dql),
   StrDql = binary_to_list(BinDql),
 
-  case pgsql:squery(Conn, StrDql) of
+  case epgsql:squery(Conn, StrDql) of
     {error, Error} -> {error, Error, State};
     {ok, [], []} -> {ok, State}
   end.
