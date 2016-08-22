@@ -18,7 +18,8 @@
 %%%=============================================================================
 
 -spec all() -> [atom()].
-all() -> [].  %% @todo recover the whole list of test cases when #257
+all() -> [].  %% @todo recover the whole list of test cases
+              %% when inaka/sumo_db#257 gets fixed
 
 -spec init_per_suite(config()) -> config().
 init_per_suite(Config) ->
