@@ -20,16 +20,7 @@ have to follow these steps:
 
  1. Add `sumo_db` and `sumo_db_pgsql` as dependencies in your project.
 
-Using **erlang.mk**:
-
-```erlang
-DEPS = sumo_db sumo_db_pgsql
-
-dep_sumo_db       = git https://github.com/inaka/sumo_db.git      0.5.0
-dep_sumo_db_pgsql = git https://github.com/inaka/sumo_db_pgsql.git 0.0.1
-```
-
-Using **Rebar**:
+Using **Rebar3**:
 
 ```erlang
 {deps, [
@@ -50,7 +41,7 @@ Using **Rebar**:
 
 Start the Erlang console, adding the path to your beams and config file
 
-    $ erl -pa ebin deps/*/ebin -config tests/test.config
+    $ erl -pa _build/default/lib/*/ebin -pa _build/test/lib/sumo_db_pgsql/test -config test/test.config
 
 Within the console:
 
@@ -75,7 +66,7 @@ Within the console:
 
 % from here you can start using sumo
 
-> sumo:find_all(sumo_test_people_pgsql).
+> sumo:find_all(people).
 []
 ```
 
