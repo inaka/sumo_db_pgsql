@@ -84,7 +84,7 @@ handle_call(get_connection, _From, State) ->
    , user := Username
    , pass := Password
    , opts := Opts} = State,
-  {ok, Conn} = pgsql:connect(Host, Username, Password, Opts),
+  {ok, Conn} = epgsql:connect(Host, Username, Password, Opts),
   {reply, Conn, State}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
