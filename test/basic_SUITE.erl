@@ -43,10 +43,10 @@ all() ->
 -spec init_per_suite(config()) -> config().
 init_per_suite(Config) ->
   {ok, _} = application:ensure_all_started(sumo_db_pgsql),
-  [{module, sumo_test_people_pgsql} | Config].
+  [{name, people} | Config].
 
 init_per_testcase(_, Config) ->
-  {_, Module} = lists:keyfind(module, 1, Config),
+  {_, Module} = lists:keyfind(name, 1, Config),
   sumo_basic_test_helper:init_store(Module),
   Config.
 
