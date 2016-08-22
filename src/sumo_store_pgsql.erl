@@ -68,8 +68,16 @@ persist(Doc,  #{conn := Conn} = State) ->
   NPFields = maps:remove(IdField, Fields), % Non-primary fields.
   NPFieldNames = maps:keys(NPFields),
   NPColumnNames = lists:map(fun escape/1, NPFieldNames),
+  #{fields := SchemaFields} = sumo_internal:get_schema(DocName),
+  ColumnTypes = [{ColumnName, ColumnType, ColumnAttrs} ||
+                  #{name  := ColumnName,
+                    type  := ColumnType,
+                    attrs := ColumnAttrs} <- SchemaFields],
 
-  NPColumnValues  = [maps:get(K, Fields) || K <- NPFieldNames],
+  NPColumnValues = lists:map(fun (N) ->
+      {N, T, A} = lists:keyfind(N, 1, ColumnTypes),
+      sleep_fun(T, N, maps:get(N, Fields), A)
+    end, NPFieldNames),
 
   {Sql, Values} =
     case Id of
@@ -324,8 +332,6 @@ create_column(Name, integer, Attrs) ->
   end;
 create_column(Name, float, Attrs) ->
   [escape(atom_to_list(Name)), " FLOAT ", create_column_options(Attrs)];
-create_column(Name, text, Attrs) ->
-  [escape(atom_to_list(Name)), " TEXT ", create_column_options(Attrs)];
 create_column(Name, binary, Attrs) ->
   [escape(atom_to_list(Name)), " BYTEA ", create_column_options(Attrs)];
 create_column(Name, string, Attrs) ->
@@ -333,7 +339,16 @@ create_column(Name, string, Attrs) ->
 create_column(Name, date, Attrs) ->
   [escape(atom_to_list(Name)), " DATE ", create_column_options(Attrs)];
 create_column(Name, datetime, Attrs) ->
-  [escape(atom_to_list(Name)), " TIMESTAMP ", create_column_options(Attrs)].
+  [escape(atom_to_list(Name)), " TIMESTAMP ", create_column_options(Attrs)];
+create_column(Name, boolean, Attrs) ->
+  [escape(atom_to_list(Name)), " BOOLEAN ", create_column_options(Attrs)];
+create_column(Name, custom, Attrs) ->
+  case lists:keyfind(type, 1, Attrs) of
+    {type, text} ->
+      [escape(atom_to_list(Name)), " TEXT ", create_column_options(Attrs)];
+    _ ->
+      create_column(Name, binary, Attrs)
+  end.
 
 create_column_options(Attrs) ->
   Options = lists:map(fun create_column_option/1, Attrs),
@@ -371,15 +386,33 @@ stringify(Sql) -> binary_to_list(iolist_to_binary(Sql)).
 
 %% @private
 wakeup(Doc) ->
-  sumo_utils:doc_transform(fun wakeup_fun/1, Doc).
+  sumo_utils:doc_transform(fun wakeup_fun/4, Doc).
 
 %% @private
 %% Matches `text' type fields that were saved with `undefined' value and
 %% avoids being processed by the next clause that will return it as a
 %% binary (`<<"undefined">>') instead of atom as expected.
-wakeup_fun({_, _, null}) ->
+wakeup_fun(_, _, null, _) ->
   undefined;
-wakeup_fun({string, _, FieldValue}) ->
+wakeup_fun(string, _, FieldValue, _) ->
   sumo_utils:to_bin(FieldValue);
-wakeup_fun({_, _, FieldValue}) ->
+wakeup_fun(custom, FieldName, FieldValue, Attrs) ->
+  case lists:keyfind(type, 1, Attrs) of
+    {type, text} ->
+      wakeup_fun(string, FieldName, FieldValue, Attrs);
+    _ ->
+      binary_to_term(FieldValue)
+  end;
+wakeup_fun(_, _, FieldValue, _) ->
+  FieldValue.
+
+%% @private
+sleep_fun(_, _, null, _) ->
+  undefined;
+sleep_fun(custom, _, FieldValue, Attrs) ->
+  case lists:keyfind(type, 1, Attrs) of
+    {type, text} -> FieldValue;
+    _ -> term_to_binary(FieldValue)
+  end;
+sleep_fun(_, _, FieldValue, _) ->
   FieldValue.
