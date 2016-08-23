@@ -12,5 +12,8 @@
   ]},
   {modules, []},
   {mod, {sumo_db_pgsql, []}},
+  {maintainers,["Inaka"]},
+  {licenses,["Apache 2.0"]},
+  {links,[{"Github","https://github.com/inaka/sumo_db_pgsql"}]},
   {build_tools, ["rebar3"]}
 ]}.
