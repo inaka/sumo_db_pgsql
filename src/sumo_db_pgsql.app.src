@@ -1,6 +1,6 @@
 {application, sumo_db_pgsql, [
   {description, "SumoDB PGSQL Adapter"},
-  {vsn, "0.1.0"},
+  {vsn, "0.1.1"},
   {id, "sumo_db_pgsql"},
   {registered, []},
   {applications, [
