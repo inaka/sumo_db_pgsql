@@ -60,7 +60,7 @@
 start_link(Name, Options) ->
   gen_server:start_link({local, Name}, ?MODULE, Options, []).
 
--spec get_connection(atom() | pid()) -> atom().
+-spec get_connection(atom() | pid()) -> pid().
 get_connection(Name) ->
   gen_server:call(Name, get_connection).
 
