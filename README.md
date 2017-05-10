@@ -24,8 +24,7 @@ Using **Rebar3**:
 
 ```erlang
 {deps, [
-  {sumo_db, {git, "https://github.com/inaka/sumo_db.git", {tag, "0.5.0"}}},
-  {sumo_db_pgsql, {git, "https://github.com/inaka/sumo_db_pgsql.git", {tag, "0.0.1"}}}
+  {sumo_db_pgsql, "0.1.1"}
 ]}.
 ```
 
@@ -33,7 +32,7 @@ Using **Rebar3**:
     as example.
     > NOTE: if you use this entity, you'll need to include `mixer` to the dependencies list
 
- 3. Provide the configuration file, e.g.: [test.config](./tests/test.config).
+ 3. Provide the configuration file, e.g.: [test.config](./test/test.config).
 
  4. Now you can run your app and start using `sumo` from there.
 
@@ -41,7 +40,9 @@ Using **Rebar3**:
 
 Start the Erlang console, adding the path to your beams and config file
 
-    $ erl -pa _build/default/lib/*/ebin -pa _build/test/lib/sumo_db_pgsql/test -config test/test.config
+```shell
+$ REBAR_PROFILE=test rebar3 shell --config=test/test.config
+```
 
 Within the console:
 
@@ -76,6 +77,10 @@ Within the console:
 - Create a user (or use defaults) and configure it on `test/test.config` file.
 
 - Create test database `sumo_test`
+
+```shell
+$ rebar3 ct
+```
 
 
 ## Contact Us

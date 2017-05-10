@@ -9,6 +9,7 @@ rel/example_project
 .concrete/DEV_MODE
 .rebar
 .erlang.mk/
+log/
 logs/
 sumo_db_pgsql.d
 _build
