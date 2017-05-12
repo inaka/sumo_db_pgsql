@@ -20,11 +20,12 @@
 -spec all() -> [atom()].
 all() -> [events_manager_supervisor_running].
 
--spec init_per_suite(Config::config()) -> config().
+-spec init_per_suite(Config :: config()) -> config().
 init_per_suite(Config) ->
-  {ok, _} = application:ensure_all_started(sumo_db_pgsql),
-  [{module, people} | Config].
+  ok = test_utils:start_apps(),
+  [{name, people} | Config].
 
--spec end_per_suite(Config::config()) -> config().
+-spec end_per_suite(Config :: config()) -> config().
 end_per_suite(Config) ->
+  ok = test_utils:stop_apps(),
   Config.

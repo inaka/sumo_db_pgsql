@@ -1,4 +1,0 @@
-%% Specific modules to include in cover.
-{
- incl_mods, [sumo_backend_pgsql, sumo_store_pgsql]
-}.

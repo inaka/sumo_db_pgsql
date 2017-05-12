@@ -51,7 +51,12 @@
 %% Types.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--type state() :: #{}.
+-type state() :: #{
+  host => string() | undefined,
+  user => string() | undefined,
+  pass => string() | undefined,
+  opts => [{atom(), term()}]
+}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% External API.
@@ -73,17 +78,16 @@ init(Options) ->
   Host     = proplists:get_value(host,     Options, "localhost"),
   Username = proplists:get_value(username, Options),
   Password = proplists:get_value(password, Options),
-  Opts = [{port,     proplists:get_value(port,     Options, 5432)},
-          {database, proplists:get_value(database, Options)}],
+  Opts = [
+    {port,     proplists:get_value(port,     Options, 5432)},
+    {database, proplists:get_value(database, Options)}
+  ],
 
   {ok, #{host => Host, user => Username, pass => Password, opts => Opts}}.
 
 -spec handle_call(term(), term(), state()) -> {reply, term(), state()}.
 handle_call(get_connection, _From, State) ->
-  #{ host := Host
-   , user := Username
-   , pass := Password
-   , opts := Opts} = State,
+  #{host := Host, user := Username, pass := Password, opts := Opts} = State,
   {ok, Conn} = epgsql:connect(Host, Username, Password, Opts),
   {reply, Conn, State}.
 
