@@ -1,5 +1,18 @@
 # Change Log
 
+## [0.1.2](https://github.com/inaka/sumo_db_pgsql/tree/0.1.2) (2017-05-12)
+[Full Changelog](https://github.com/inaka/sumo_db_pgsql/compare/0.1.1...0.1.2)
+
+**Closed issues:**
+
+- Upgrade sumo\_db dep to 0.7.1 [\#22](https://github.com/inaka/sumo_db_pgsql/issues/22)
+- Version Bump to 0.1.1 [\#18](https://github.com/inaka/sumo_db_pgsql/issues/18)
+
+**Merged pull requests:**
+
+- \[\#22\] Upgrade sumo\_db dep to 0.7.1 [\#23](https://github.com/inaka/sumo_db_pgsql/pull/23) ([cabol](https://github.com/cabol))
+- Delete wrong comment [\#20](https://github.com/inaka/sumo_db_pgsql/pull/20) ([lucafavatella](https://github.com/lucafavatella))
+
 ## [0.1.1](https://github.com/inaka/sumo_db_pgsql/tree/0.1.1) (2017-02-17)
 [Full Changelog](https://github.com/inaka/sumo_db_pgsql/compare/0.1.0...0.1.1)
 
@@ -10,6 +23,7 @@
 
 **Merged pull requests:**
 
+- \[\#18\] version bump to 0.1.1 [\#19](https://github.com/inaka/sumo_db_pgsql/pull/19) ([ferigis](https://github.com/ferigis))
 - \[\#15\] Fix get\_connection spec [\#17](https://github.com/inaka/sumo_db_pgsql/pull/17) ([ferigis](https://github.com/ferigis))
 
 ## [0.1.0](https://github.com/inaka/sumo_db_pgsql/tree/0.1.0) (2016-08-23)
