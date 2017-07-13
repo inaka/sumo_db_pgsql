@@ -35,7 +35,7 @@
 -export([persist/2]).
 -export([delete_by/3, delete_all/2]).
 -export([find_all/2, find_all/5, find_by/3, find_by/5, find_by/6]).
--export([fetch/3, count/2]).
+-export([fetch/3, count/2, count_by/3]).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Types.
@@ -311,6 +311,35 @@ count(DocName, #{conn := Conn} = State) ->
   case epgsql:squery(Conn, ["SELECT Count(*) FROM ", escape(atom_to_list(DocName))]) of
     {ok, _, [{Count}]} ->
       {ok, binary_to_integer(Count), State};
+    {error, Error} ->
+      {error, Error, State}
+  end.
+
+-spec count_by(DocName, Conditions, State) -> Response when
+  DocName    :: sumo:schema_name(),
+  Conditions :: sumo:conditions(),
+  State      :: state(),
+  Response   :: sumo_store:result(non_neg_integer(), state()).
+count_by(DocName, [], State) ->
+  count(DocName, State);
+count_by(DocName, Conditions, #{conn := Conn} = State) ->
+  {Values, CleanConditions} = sumo_sql_builder:values_conditions(Conditions),
+  Clauses = sumo_sql_builder:where_clause(
+    CleanConditions,
+    fun escape/1,
+    fun sumo_sql_builder:slot_numbered/1
+  ),
+
+  Sql = [
+    "SELECT COUNT(1) FROM ",
+    escape(atom_to_list(DocName)),
+    " WHERE ",
+    lists:flatten(Clauses)
+  ],
+
+  case epgsql:equery(Conn, stringify(Sql), Values) of
+    {ok, _, [{Count}]} ->
+      {ok, Count, State};
     {error, Error} ->
       {error, Error, State}
   end.
