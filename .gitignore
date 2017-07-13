@@ -16,5 +16,4 @@ _build
 *.iml
 .idea
 *_plt
-rebar.lock
 .DS_Store
