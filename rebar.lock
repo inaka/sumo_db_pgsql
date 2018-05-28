@@ -1,20 +1,20 @@
 {"1.1.0",
-[{<<"epgsql">>,{pkg,<<"epgsql">>,<<"3.3.0">>},0},
- {<<"goldrush">>,{pkg,<<"goldrush">>,<<"0.1.8">>},1},
+[{<<"epgsql">>,{pkg,<<"epgsql">>,<<"4.0.1">>},0},
+ {<<"goldrush">>,{pkg,<<"goldrush">>,<<"0.1.9">>},1},
  {<<"iso8601">>,{pkg,<<"iso8601">>,<<"1.2.3">>},1},
- {<<"lager">>,{pkg,<<"lager">>,<<"3.2.1">>},0},
+ {<<"lager">>,{pkg,<<"lager">>,<<"3.6.2">>},0},
  {<<"quickrand">>,{pkg,<<"quickrand">>,<<"1.5.4">>},2},
- {<<"sumo_db">>,{pkg,<<"sumo_db">>,<<"0.7.3">>},0},
- {<<"uuid">>,{pkg,<<"uuid_erl">>,<<"1.5.4">>},1},
- {<<"worker_pool">>,{pkg,<<"worker_pool">>,<<"2.0.1">>},1}]}.
+ {<<"sumo_db">>,{pkg,<<"sumo_db">>,<<"0.7.7">>},0},
+ {<<"uuid">>,{pkg,<<"uuid_erl">>,<<"1.5.2-rc1">>},1},
+ {<<"worker_pool">>,{pkg,<<"worker_pool">>,<<"3.1.0">>},1}]}.
 [
 {pkg_hash,[
- {<<"epgsql">>, <<"974A578340E52012CBAB820CE756E7ED1DF1BAF0110C59A6753D8337A2CF9454">>},
- {<<"goldrush">>, <<"2024BA375CEEA47E27EA70E14D2C483B2D8610101B4E852EF7F89163CDB6E649">>},
+ {<<"epgsql">>, <<"7F6A0DFFF22A2A87C426045FA2BD6DF105EFA094575A114BE282F7DFAF46F270">>},
+ {<<"goldrush">>, <<"F06E5D5F1277DA5C413E84D5A2924174182FB108DABB39D5EC548B27424CD106">>},
  {<<"iso8601">>, <<"56D173EC568D42E95908797A9B7D27BCF0B377443277416733EB1A544A4A47C2">>},
- {<<"lager">>, <<"EEF4E18B39E4195D37606D9088EA05BF1B745986CF8EC84F01D332456FE88D17">>},
+ {<<"lager">>, <<"2C72950A0E75FFD927DD35BC85EA30E7680A264C4BBD08B328250871AC456CC2">>},
  {<<"quickrand">>, <<"47ADD4755CC5F209CBEFFD6F47C84061196CD7FAD99FD8FD12418EB0D06B939D">>},
- {<<"sumo_db">>, <<"73229C75A889C8C58DDFF5BD9E2BF487DE536EB04C1E732D3189EDAD7271E21C">>},
- {<<"uuid">>, <<"06240EFF3EAF013CC22274689B0C1FF6345645EE5D47A9E4ED7545EEB7698B23">>},
- {<<"worker_pool">>, <<"B90273074898FA89434317991E00884DBBAFFAB5BFD964A7586317CD16FB18D4">>}]}
+ {<<"sumo_db">>, <<"5870B6D6E73204C36173DDDFB76C4B48C21EF6DD59D6490389AA3458675B46DD">>},
+ {<<"uuid">>, <<"D4022AB3F4F1A28E86EA15D4075CB0C57EC908D8AF1CA2E8AF28AA815EF93C3A">>},
+ {<<"worker_pool">>, <<"C908627E04057CF29940AD0E79B89AB161DB520EEBC76942EFD08A187BABF93A">>}]}
 ].
