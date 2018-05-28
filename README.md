@@ -4,7 +4,6 @@
 
 This is the [PostgreSQL](http://www.postgresql.org/download/) adapter for [sumo_db](https://github.com/inaka/sumo_db).
 
-
 ## PosgreSQL
 
 ### Install PostgreSQL
@@ -12,31 +11,29 @@ This is the [PostgreSQL](http://www.postgresql.org/download/) adapter for [sumo_
 To install **PostgreSQL** please follow the instructions in this link:
 [Installing PostgreSQL](https://wiki.postgresql.org/wiki/Detailed_installation_guides).
 
-
 ## Getting Started
 
-To start using `sumo_db` with this PostgreSQL adapter `sumo_db_pgsql` is pretty easy, you just
-have to follow these steps:
+To start using `sumo_db` with this PostgreSQL adapter `sumo_db_pgsql` is pretty easy, you just have to follow these
+steps:
 
- 1. Add `sumo_db` and `sumo_db_pgsql` as dependencies in your project.
+1. Add `sumo_db` and `sumo_db_pgsql` as dependencies in your project.
 
-Using **Rebar3**:
+   Using **Rebar3**:
+  
+   ```erlang
+   {deps, [
+     {sumo_db_pgsql, "0.1.1"}
+   ]}.
+   ```
 
-```erlang
-{deps, [
-  {sumo_db_pgsql, "0.1.1"}
-]}.
-```
+1. You need at least one doc/entity, let's use [sumo_test_people_pgsql](./test/sumo_test_people_pgsql.erl) as example.
+   > NOTE: if you use this entity, you'll need to include `mixer` to the dependencies list
 
- 2. You need at least one doc/entity, let's use [sumo_test_people_pgsql](./test/sumo_test_people_pgsql.erl)
-    as example.
-    > NOTE: if you use this entity, you'll need to include `mixer` to the dependencies list
+1. Provide the configuration file, e.g.: [test.config](./test/test.config).
 
- 3. Provide the configuration file, e.g.: [test.config](./test/test.config).
+1. Now you can run your app and start using `sumo` from there.
 
- 4. Now you can run your app and start using `sumo` from there.
-
-### Running sumo from Erlang console
+### Running `sumo` from Erlang console
 
 Start the Erlang console, adding the path to your beams and config file
 
@@ -71,18 +68,39 @@ Within the console:
 []
 ```
 
-
 ## Running Tests
 
-- Create a user (or use defaults) and configure it on `test/test.config` file.
+A PostgreSQL instance is needed to run the tests. If `Docker` (and `Docker Compose`) is an option, a PostgreSQL server
+can be run executing the following commands (assuming the current/working directory is the project's root):
 
-- Create test database `sumo_test`
+```shell
+$ docker-compose up -d
+```
+
+After this is completed, a similar result should be displayed:
+
+```shell
+$ docker-compose ps
+      Name                    Command              State           Ports
+---------------------------------------------------------------------------------
+sumodbpgsql_db_1   docker-entrypoint.sh postgres   Up      0.0.0.0:5432->5432/tcp
+```
+
+If `Docker` (and `Docker Compose`) is not an alternative, install PostgreSQL (refer to **Install PostgreSQL**) and make
+sure to:
+
+- Create a `postgres` user (with `postgres` as password).
+- Create a _test_ `sumo_test` database.
+
+> **NOTE:** Alternatively, use PostgreSQL defaults and make sure to modify/update `test/test.config` accordingly.
+
+Then run:
 
 ```shell
 $ rebar3 ct
 ```
 
-
 ## Contact Us
+
 If you find any **bugs** or have a **problem** while using this library, please
 [open an issue](https://github.com/inaka/sumo_db_pgsql/issues/new) in this repo (or a pull request :)).
