@@ -1,0 +1,10 @@
+version: "3"
+services:
+  db:
+    image: postgres:10.4-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=sumo_test
+    ports:
+      - "5432:5432"
