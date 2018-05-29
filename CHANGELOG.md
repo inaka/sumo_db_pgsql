@@ -1,15 +1,34 @@
 # Change Log
 
-## [0.1.2](https://github.com/inaka/sumo_db_pgsql/tree/0.1.2) (2017-05-12)
+## [0.2.0](https://github.com/inaka/sumo_db_pgsql/tree/0.2.0) (2018-05-29)
+[Full Changelog](https://github.com/inaka/sumo_db_pgsql/compare/0.1.2...0.2.0)
+
+**Closed issues:**
+
+- Upgrade sumo\_db\_pgsql to use the latest sumo\_db dependency ‒ and maybe some other dependencies [\#34](https://github.com/inaka/sumo_db_pgsql/issues/34)
+
+**Merged pull requests:**
+
+- Upgrade sumo\_db\_pgsql to use the latest sumo\_db dependency ‒ and maybe some other dependencies [\#35](https://github.com/inaka/sumo_db_pgsql/pull/35) ([x80486](https://github.com/x80486))
+
+## [0.1.2](https://github.com/inaka/sumo_db_pgsql/tree/0.1.2) (2017-09-18)
 [Full Changelog](https://github.com/inaka/sumo_db_pgsql/compare/0.1.1...0.1.2)
 
 **Closed issues:**
 
+- Upgrade SumoDB dep [\#30](https://github.com/inaka/sumo_db_pgsql/issues/30)
+- add end\_per\_suite [\#28](https://github.com/inaka/sumo_db_pgsql/issues/28)
+- Update sumo db [\#26](https://github.com/inaka/sumo_db_pgsql/issues/26)
+- Version Bump to 0.1.2 [\#24](https://github.com/inaka/sumo_db_pgsql/issues/24)
 - Upgrade sumo\_db dep to 0.7.1 [\#22](https://github.com/inaka/sumo_db_pgsql/issues/22)
 - Version Bump to 0.1.1 [\#18](https://github.com/inaka/sumo_db_pgsql/issues/18)
 
 **Merged pull requests:**
 
+- Update README.md [\#33](https://github.com/inaka/sumo_db_pgsql/pull/33) ([igaray](https://github.com/igaray))
+- \[\#30\] updating sumo\_db to 0.7.3 [\#31](https://github.com/inaka/sumo_db_pgsql/pull/31) ([ferigis](https://github.com/ferigis))
+- \[\#28\] adding end\_per\_suite test [\#29](https://github.com/inaka/sumo_db_pgsql/pull/29) ([ferigis](https://github.com/ferigis))
+- \[\#24\] Version Bump to 0.1.2 [\#25](https://github.com/inaka/sumo_db_pgsql/pull/25) ([ferigis](https://github.com/ferigis))
 - \[\#22\] Upgrade sumo\_db dep to 0.7.1 [\#23](https://github.com/inaka/sumo_db_pgsql/pull/23) ([cabol](https://github.com/cabol))
 - Delete wrong comment [\#20](https://github.com/inaka/sumo_db_pgsql/pull/20) ([lucafavatella](https://github.com/lucafavatella))
 
