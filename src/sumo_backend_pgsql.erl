@@ -82,10 +82,7 @@ init(Options) ->
     {port,     proplists:get_value(port,     Options, 5432)},
     {database, proplists:get_value(database, Options)},
     {ssl, proplists:get_value(database, Options, false)},
-    {ssl_opts, [
-      {verify, proplists:get_value(verify, Options, verify_none)},
-      {cacertfile, proplists:get_value(cacertfile, Options)}
-    ]}
+    {ssl_opts, proplists:get_value(ssl_opts, Options, [])}    
   ],
 
   {ok, #{host => Host, user => Username, pass => Password, opts => Opts}}.
