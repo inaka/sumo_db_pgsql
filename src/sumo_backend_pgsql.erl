@@ -80,7 +80,9 @@ init(Options) ->
   Password = proplists:get_value(password, Options),
   Opts = [
     {port,     proplists:get_value(port,     Options, 5432)},
-    {database, proplists:get_value(database, Options)}
+    {database, proplists:get_value(database, Options)},
+    {ssl, proplists:get_value(ssl, Options, false)},
+    {ssl_opts, proplists:get_value(ssl_opts, Options, [])}    
   ],
 
   {ok, #{host => Host, user => Username, pass => Password, opts => Opts}}.
