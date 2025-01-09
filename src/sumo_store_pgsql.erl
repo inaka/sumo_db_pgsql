@@ -404,6 +404,8 @@ create_column(Name, integer, Attrs) ->
     false ->
       [escape(atom_to_list(Name)), " INTEGER ", create_column_options(Attrs)]
   end;
+create_column(Name, bigint, Attrs) ->
+    [atom_to_list(Name), " BIGINT", create_column_options(Attrs)];
 create_column(Name, float, Attrs) ->
   [escape(atom_to_list(Name)), " FLOAT ", create_column_options(Attrs)];
 create_column(Name, binary, Attrs) ->
